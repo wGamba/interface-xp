@@ -1,32 +1,40 @@
 # Contributing
 
-## Flujo de trabajo
+Usamos **trunk-based development** — ramas cortas, una por clase, cualquiera puede tomar cualquier clase. Nadie es dueño de nada.
 
-**1. Crear rama desde main**
+## Flujo por clase
+
+**1. Arrancar siempre desde main actualizado**
 ```bash
 git checkout main
 git pull origin main
-git checkout -b ariel/nombre-feature
+git checkout -b feat/nombre-clase
 ```
 
-**2. Trabajar y commitear**
+**2. Escribir test → implementar → pasar tests**
 ```bash
-git add archivo.py
-git commit -m "feat: descripción corta"
-git push origin ariel/nombre-feature
+pytest
 ```
 
-**3. Abrir Pull Request en GitHub**
+**3. Commitear y subir**
+```bash
+git add .
+git commit -m "feat: clase NombreClase"
+git push origin feat/nombre-clase
+```
+
+**4. Abrir Pull Request en GitHub**
 - Ir al repo → "Compare & pull request"
 - Título claro, descripción de qué hiciste
-- Asignar reviewer: **wGamba**
+- El que NO escribió la clase aprueba el PR
 
-**4. Esperar aprobación**
-- Main está protegido — el merge está bloqueado hasta que el otro integrante apruebe.
-- No hace falta hacer nada más, GitHub lo maneja.
+**5. Merge y repetir**
+- Main está protegido — merge bloqueado hasta que el otro apruebe.
+- Después del merge, volver al paso 1 para la siguiente clase.
 
-**5. Después del merge, actualizar local**
-```bash
-git checkout main
-git pull origin main
-```
+## Reglas
+
+- Una rama = una clase = un PR
+- La rama vive máximo 1-2 horas, nunca overnight
+- Antes de cada rama nueva: `git pull origin main`
+- Cualquiera puede tomar cualquier clase
