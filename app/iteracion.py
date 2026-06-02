@@ -1,24 +1,24 @@
 class Iteracion:
 
     def __init__(self):
-        self.__estado = "en curso"
-        self.__funcionalidades = []
+        self.__status = "in progress"
+        self.__functionalities = []
 
-    def agregar_funcionalidad(self, funcionalidad):
-        if self.__estado == "finalizada":
-            raise Exception("No se pueden agregar funcionalidades a una iteracion finalizada.")
-        self.__funcionalidades.append(funcionalidad)
+    def add_functionality(self, functionality):
+        if self.__status == "finished":
+            raise Exception("Cannot add functionalities to a finished iteration.")
+        self.__functionalities.append(functionality)
 
-    def finalizar(self, seccion_comentarios):
-        if self.__estado == "finalizada":
-            raise Exception("La iteracion ya fue finalizada.")
-        if len(self.__funcionalidades) == 0:
-            raise Exception("No se puede finalizar una iteracion sin funcionalidades.")
-        self.__estado = "finalizada"
-        seccion_comentarios.activar()
+    def finish(self, comments_section):
+        if self.__status == "finished":
+            raise Exception("Iteration has already been finished.")
+        if len(self.__functionalities) == 0:
+            raise Exception("Cannot finish an iteration without functionalities.")
+        self.__status = "finished"
+        comments_section.activate()
 
-    def get_estado(self):
-        return self.__estado
+    def get_status(self):
+        return self.__status
 
-    def get_funcionalidades(self):
-        return list(self.__funcionalidades)
+    def get_functionalities(self):
+        return list(self.__functionalities)
