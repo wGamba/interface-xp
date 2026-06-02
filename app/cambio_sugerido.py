@@ -1,22 +1,22 @@
 class CambioSugerido:
 
-    validPriorities = ["high", "medium", "low"]
+    VALID_PRIORITIES = ["high", "medium", "low"]
 
-    def __init__(self, descripcion, prioridad):
-        if not descripcion or descripcion.strip() == "":
-            raise ValueError("La descripcion no puede estar vacia.")
-        if prioridad not in self.PRIORIDADES_VALIDAS:
-            raise ValueError("Prioridad invalida. Use: alta, media o baja.")
-        self.__descripcion = descripcion
-        self.__prioridad = prioridad
+    def __init__(self, description, priority):
+        if not description or description.strip() == "":
+            raise ValueError("Description cannot be empty.")
+        if priority not in self.VALID_PRIORITIES:
+            raise ValueError("Invalid priority. Use: high, medium or low.")
+        self.__description = description
+        self.__priority = priority
 
-    def get_descripcion(self):
-        return self.__descripcion
+    def get_description(self):
+        return self.__description
 
     def get_priority(self):
-        return self.__prioridad
+        return self.__priority
 
-    def set_priority(self, nueva_prioridad):
-        if nueva_prioridad not in self.PRIORIDADES_VALIDAS:
-            raise ValueError("Prioridad invalida. Use: alta, media o baja.")
-        self.__prioridad = nueva_prioridad
+    def set_priority(self, new_priority):
+        if new_priority not in self.VALID_PRIORITIES:
+            raise ValueError("Invalid priority. Use: high, medium or low.")
+        self.__priority = new_priority
