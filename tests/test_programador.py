@@ -3,35 +3,35 @@ from app.programador import Programador
 from app.seccion_comentarios import SeccionComentarios
 from app.cambio_sugerido import CambioSugerido
 
-def test_programador_no_puede_obtener_retroalimentacion_si_seccion_no_esta_activa():
-    programador = Programador()
-    seccion = SeccionComentarios()
+def test_developer_cannot_get_feedback_if_section_not_active():
+    developer = Programador()
+    section = SeccionComentarios()
     with pytest.raises(Exception):
-        programador.obtener_retroalimentacion(seccion)
+        developer.get_feedback(section)
 
-def test_programador_no_puede_priorizar_con_valor_invalido():
-    programador = Programador()
-    cambio = CambioSugerido("Mejorar interfaz", "media")
+def test_developer_cannot_prioritize_with_invalid_value():
+    developer = Programador()
+    change = CambioSugerido("Improve interface", "medium")
     with pytest.raises(ValueError):
-        programador.priorizar_cambio(cambio, "urgentisimo")
+        developer.prioritize_change(change, "super urgent")
 
-def test_programador_puede_cambiar_prioridad_de_cambio_sugerido():
-    programador = Programador()
-    cambio = CambioSugerido("Mejorar interfaz", "baja")
-    programador.priorizar_cambio(cambio, "alta")
-    assert cambio.get_prioridad() == "alta"
+def test_developer_can_change_priority_of_suggested_change():
+    developer = Programador()
+    change = CambioSugerido("Improve interface", "low")
+    developer.prioritize_change(change, "high")
+    assert change.get_priority() == "high"
 
-def test_programador_obtiene_retroalimentacion_correctamente():
-    programador = Programador()
-    seccion = SeccionComentarios()
-    seccion.activar()
-    seccion.agregar_comentario("El diseno no es intuitivo")
-    comentarios = programador.obtener_retroalimentacion(seccion)
-    assert "El diseno no es intuitivo" in comentarios
+def test_developer_gets_feedback_correctly():
+    developer = Programador()
+    section = SeccionComentarios()
+    section.activate()
+    section.add_comment("The design is not intuitive")
+    comments = developer.get_feedback(section)
+    assert "The design is not intuitive" in comments
 
-def test_programador_obtiene_lista_vacia_si_no_hay_comentarios():
-    programador = Programador()
-    seccion = SeccionComentarios()
-    seccion.activar()
-    comentarios = programador.obtener_retroalimentacion(seccion)
-    assert comentarios == []
+def test_developer_gets_empty_list_if_no_comments():
+    developer = Programador()
+    section = SeccionComentarios()
+    section.activate()
+    comments = developer.get_feedback(section)
+    assert comments == []
