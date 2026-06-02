@@ -3,48 +3,48 @@ from app.iteracion import Iteracion
 from app.funcionalidad import Funcionalidad
 from app.seccion_comentarios import SeccionComentarios
 
-def test_iteracion_finalizada_no_puede_recibir_mas_funcionalidades():
-    iteracion = Iteracion()
-    iteracion.agregar_funcionalidad(Funcionalidad("Login de usuario"))
-    seccion = SeccionComentarios()
-    iteracion.finalizar(seccion)
+def test_finished_iteration_cannot_receive_more_functionalities():
+    iteration = Iteracion()
+    iteration.add_functionality(Funcionalidad("User login"))
+    section = SeccionComentarios()
+    iteration.finish(section)
     with pytest.raises(Exception):
-        iteracion.agregar_funcionalidad(Funcionalidad("Nueva funcionalidad"))
+        iteration.add_functionality(Funcionalidad("New functionality"))
 
-def test_iteracion_no_puede_finalizar_sin_funcionalidades():
-    iteracion = Iteracion()
-    seccion = SeccionComentarios()
+def test_iteration_cannot_finish_without_functionalities():
+    iteration = Iteracion()
+    section = SeccionComentarios()
     with pytest.raises(Exception):
-        iteracion.finalizar(seccion)
+        iteration.finish(section)
 
-def test_iteracion_activa_seccion_al_finalizar():
-    iteracion = Iteracion()
-    iteracion.agregar_funcionalidad(Funcionalidad("Login de usuario"))
-    seccion = SeccionComentarios()
-    iteracion.finalizar(seccion)
-    assert seccion.is_activa() == True
+def test_iteration_activates_section_when_finished():
+    iteration = Iteracion()
+    iteration.add_functionality(Funcionalidad("User login"))
+    section = SeccionComentarios()
+    iteration.finish(section)
+    assert section.is_active() == True
 
-def test_iteracion_no_puede_finalizarse_dos_veces():
-    iteracion = Iteracion()
-    iteracion.agregar_funcionalidad(Funcionalidad("Login de usuario"))
-    seccion = SeccionComentarios()
-    iteracion.finalizar(seccion)
+def test_iteration_cannot_be_finished_twice():
+    iteration = Iteracion()
+    iteration.add_functionality(Funcionalidad("User login"))
+    section = SeccionComentarios()
+    iteration.finish(section)
     with pytest.raises(Exception):
-        iteracion.finalizar(seccion)
+        iteration.finish(section)
 
-def test_iteracion_estado_inicial_es_en_curso():
-    iteracion = Iteracion()
-    assert iteracion.get_estado() == "en curso"
+def test_iteration_initial_status_is_in_progress():
+    iteration = Iteracion()
+    assert iteration.get_status() == "in progress"
 
-def test_iteracion_estado_cambia_a_finalizada():
-    iteracion = Iteracion()
-    iteracion.agregar_funcionalidad(Funcionalidad("Login de usuario"))
-    seccion = SeccionComentarios()
-    iteracion.finalizar(seccion)
-    assert iteracion.get_estado() == "finalizada"
+def test_iteration_status_changes_to_finished():
+    iteration = Iteracion()
+    iteration.add_functionality(Funcionalidad("User login"))
+    section = SeccionComentarios()
+    iteration.finish(section)
+    assert iteration.get_status() == "finished"
 
-def test_iteracion_agrega_funcionalidad_correctamente():
-    iteracion = Iteracion()
-    funcionalidad = Funcionalidad("Login de usuario")
-    iteracion.agregar_funcionalidad(funcionalidad)
-    assert funcionalidad in iteracion.get_funcionalidades()
+def test_iteration_adds_functionality_correctly():
+    iteration = Iteracion()
+    functionality = Funcionalidad("User login")
+    iteration.add_functionality(functionality)
+    assert functionality in iteration.get_functionalities()
