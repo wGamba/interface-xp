@@ -1,6 +1,3 @@
-from app.funcionalidad import Funcionalidad
-from app.seccion_comentarios import SeccionComentarios
-
 class Iteracion:
 
     def __init__(self):
