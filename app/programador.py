@@ -1,13 +1,13 @@
 class Programador:
 
-    PRIORIDADES_VALIDAS = ["alta", "media", "baja"]
+    VALID_PRIORITIES = ["high", "medium", "low"]
 
-    def obtener_retroalimentacion(self, seccion_comentarios):
-        if not seccion_comentarios.is_activa():
-            raise Exception("La seccion de comentarios no esta activa.")
-        return seccion_comentarios.get_comentarios()
+    def get_feedback(self, comments_section):
+        if not comments_section.is_active():
+            raise Exception("The comments section is not active.")
+        return comments_section.get_comments()
 
-    def priorizar_cambio(self, cambio_sugerido, nueva_prioridad):
-        if nueva_prioridad not in self.PRIORIDADES_VALIDAS:
-            raise ValueError("Prioridad invalida. Use: alta, media o baja.")
-        cambio_sugerido.set_prioridad(nueva_prioridad)
+    def prioritize_change(self, suggested_change, new_priority):
+        if new_priority not in self.VALID_PRIORITIES:
+            raise ValueError("Invalid priority. Use: high, medium or low.")
+        suggested_change.set_priority(new_priority)
