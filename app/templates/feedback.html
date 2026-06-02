@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Client Feedback{% endblock %}
+{% block content %}
+<div class="room-head">
+    <h1>US-02 · Client Feedback</h1>
+    <form method="post" action="{{ url_for('main.feedback_reset') }}">
+        <button class="ghost">Reset iteration</button>
+    </form>
+</div>
+<p>Iteration status: <strong>{{ status }}</strong></p>
+
+<div class="room-grid">
+    <section>
+        <h2>Developer · build the iteration</h2>
+        {% if status == 'in progress' %}
+        <form class="inline" method="post" action="{{ url_for('main.feedback_add') }}">
+            <input type="text" name="description" placeholder="New functionality" required>
+            <button type="submit">Add</button>
+        </form>
+        <form method="post" action="{{ url_for('main.feedback_finish') }}">
+            <button class="ghost">Finish iteration (open comments)</button>
+        </form>
+        {% else %}
+        <p class="hint">Iteration finished. Comments are open.</p>
+        {% endif %}
+
+        <h2>Functionalities</h2>
+        <ul class="items">
+            {% for i, f in funcs %}
+            <li>
+                <div>
+                    <strong>{{ f.get_description() }}</strong>
+                    <span class="badge {{ f.get_status() }}">{{ f.get_status() }}</span>
+                </div>
+                {% if f.get_justification() %}
+                    <p class="hint">{{ f.get_justification() }}</p>
+                {% endif %}
+                {% if f.get_status() == 'pending' %}
+                <form class="inline" method="post" action="{{ url_for('main.feedback_evaluate') }}">
+                    <input type="hidden" name="index" value="{{ i }}">
+                    <input type="text" name="justification" placeholder="Justification" required>
+                    <button type="submit" name="decision" value="approve">Approve</button>
+                    <button type="submit" name="decision" value="reject" class="ghost">Reject</button>
+                </form>
+                {% endif %}
+            </li>
+            {% else %}
+            <li class="hint">No functionalities yet.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <aside>
+        <h2>Client · propose a change</h2>
+        <form class="inline" method="post" action="{{ url_for('main.feedback_propose') }}">
+            <input type="text" name="description" placeholder="Change description" required>
+            <select name="priority">
+                <option value="high">high</option>
+                <option value="medium" selected>medium</option>
+                <option value="low">low</option>
+            </select>
+            <button type="submit">Propose</button>
+        </form>
+
+        <h2>Suggested changes</h2>
+        <ul class="items">
+            {% for i, c in cambios %}
+            <li>
+                <div>
+                    <strong>{{ c.get_description() }}</strong>
+                    <span class="badge prio-{{ c.get_priority() }}">{{ c.get_priority() }}</span>
+                </div>
+                <form class="inline" method="post" action="{{ url_for('main.feedback_prioritize') }}">
+                    <input type="hidden" name="index" value="{{ i }}">
+                    <select name="priority">
+                        <option value="high">high</option>
+                        <option value="medium">medium</option>
+                        <option value="low">low</option>
+                    </select>
+                    <button type="submit">Reprioritize</button>
+                </form>
+            </li>
+            {% else %}
+            <li class="hint">No changes proposed.</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Comments {% if not active %}<span class="hint">(locked until finish)</span>{% endif %}</h2>
+        {% if active %}
+        <form class="inline" method="post" action="{{ url_for('main.feedback_comment') }}">
+            <input type="text" name="comment" placeholder="Comment on the increment" required>
+            <button type="submit">Send</button>
+        </form>
+        {% endif %}
+        <ul class="log">
+            {% for c in comments %}<li>{{ c }}</li>{% endfor %}
+        </ul>
+    </aside>
+</div>
+{% endblock %}

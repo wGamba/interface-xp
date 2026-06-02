@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Session {{ code }}{% endblock %}
+{% block content %}
+<div class="room-head">
+    <div>
+        <h1>Session <span class="code">{{ code }}</span></h1>
+        <p>Share this code so your pair can join.</p>
+    </div>
+    <div class="role-box">
+        You are <strong id="role">{{ role }}</strong>
+        <button id="swap">Swap roles</button>
+    </div>
+</div>
+
+<div class="room-grid">
+    <section>
+        <h2>shared.py</h2>
+        <textarea id="editor" rows="18"
+            {% if role != 'Driver' %}readonly{% endif %}>{{ content }}</textarea>
+        <p class="hint" id="hint"></p>
+    </section>
+    <aside>
+        <h2>Participants</h2>
+        <ul id="users"></ul>
+        <h2>Change log</h2>
+        <ul id="log" class="log"></ul>
+    </aside>
+</div>
+
+<script>
+    window.SESSION = {
+        code: {{ code|tojson }},
+        name: {{ name|tojson }},
+        role: {{ role|tojson }}
+    };
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="{{ url_for('static', filename='js/room.js') }}"></script>
+{% endblock %}
