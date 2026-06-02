@@ -1,25 +1,25 @@
 class Funcionalidad:
 
-    def __init__(self, descripcion):
-        if not descripcion or descripcion.strip() == "":
-            raise ValueError("La descripcion no puede estar vacia.")
-        self.__descripcion = descripcion
-        self.__estado = "pendiente"
-        self.__justificacion = ""
+    def __init__(self, description):
+        if not description or description.strip() == "":
+            raise ValueError("Description cannot be empty.")
+        self.__description = description
+        self.__status = "pending"
+        self.__justification = ""
 
-    def set_estado(self, estado, justificacion):
-        if self.__estado != "pendiente":
-            raise Exception("La funcionalidad ya fue evaluada.")
-        if not justificacion or justificacion.strip() == "":
-            raise ValueError("La justificacion no puede estar vacia.")
-        self.__estado = estado
-        self.__justificacion = justificacion
+    def set_status(self, status, justification):
+        if self.__status != "pending":
+            raise Exception("Functionality has already been evaluated.")
+        if not justification or justification.strip() == "":
+            raise ValueError("Justification cannot be empty.")
+        self.__status = status
+        self.__justification = justification
 
-    def get_descripcion(self):
-        return self.__descripcion
+    def get_description(self):
+        return self.__description
 
-    def get_estado(self):
-        return self.__estado
+    def get_status(self):
+        return self.__status
 
-    def get_justificacion(self):
-        return self.__justificacion
+    def get_justification(self):
+        return self.__justification
