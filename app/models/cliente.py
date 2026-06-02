@@ -1,4 +1,4 @@
-from app.cambio_sugerido import CambioSugerido
+from app.models.cambio_sugerido import CambioSugerido
 
 class Cliente:
 

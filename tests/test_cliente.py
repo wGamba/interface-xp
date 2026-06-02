@@ -1,7 +1,7 @@
 import pytest
-from app.cliente import Cliente
-from app.funcionalidad import Funcionalidad
-from app.cambio_sugerido import CambioSugerido
+from app.models.cliente import Cliente
+from app.models.funcionalidad import Funcionalidad
+from app.models.cambio_sugerido import CambioSugerido
 
 def test_client_cannot_approve_without_justification():
     client = Cliente()
