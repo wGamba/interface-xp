@@ -32,4 +32,4 @@ def test_functionality_stores_justification_correctly():
 def test_functionality_stores_rejected_status_correctly():
     functionality = Funcionalidad("Payment module")
     functionality.set_status("rejected", "Does not meet requirements")
-    assert functionality.get_status() == "rejected"   
+    assert functionality.get_status() == "rejected"
