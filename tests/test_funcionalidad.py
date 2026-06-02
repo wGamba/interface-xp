@@ -1,35 +1,35 @@
 import pytest
 from app.funcionalidad import Funcionalidad
 
-def test_funcionalidad_no_puede_crearse_sin_descripcion():
+def test_functionality_cannot_be_created_without_description():
     with pytest.raises(ValueError):
         Funcionalidad("")
 
-def test_funcionalidad_estado_inicial_es_pendiente():
-    funcionalidad = Funcionalidad("Modulo de pagos")
-    assert funcionalidad.get_estado() == "pendiente"
+def test_functionality_initial_status_is_pending():
+    functionality = Funcionalidad("Payment module")
+    assert functionality.get_status() == "pending"
 
-def test_funcionalidad_aprobada_no_puede_reevaluarse():
-    funcionalidad = Funcionalidad("Modulo de pagos")
-    funcionalidad.set_estado("aprobada", "Funciona bien")
+def test_approved_functionality_cannot_be_reevaluated():
+    functionality = Funcionalidad("Payment module")
+    functionality.set_status("approved", "Works well")
     with pytest.raises(Exception):
-        funcionalidad.set_estado("rechazada", "Cambie de opinion")
+        functionality.set_status("rejected", "Changed my mind")
 
-def test_funcionalidad_no_puede_aprobarse_sin_justificacion():
-    funcionalidad = Funcionalidad("Modulo de pagos")
+def test_functionality_cannot_be_approved_without_justification():
+    functionality = Funcionalidad("Payment module")
     with pytest.raises(ValueError):
-        funcionalidad.set_estado("aprobada", "")
+        functionality.set_status("approved", "")
 
-def test_funcionalidad_almacena_descripcion_correctamente():
-    funcionalidad = Funcionalidad("Modulo de pagos")
-    assert funcionalidad.get_descripcion() == "Modulo de pagos"
+def test_functionality_stores_description_correctly():
+    functionality = Funcionalidad("Payment module")
+    assert functionality.get_description() == "Payment module"
 
-def test_funcionalidad_registra_justificacion_correctamente():
-    funcionalidad = Funcionalidad("Modulo de pagos")
-    funcionalidad.set_estado("aprobada", "Funciona perfectamente")
-    assert funcionalidad.get_justificacion() == "Funciona perfectamente"
+def test_functionality_stores_justification_correctly():
+    functionality = Funcionalidad("Payment module")
+    functionality.set_status("approved", "Works perfectly")
+    assert functionality.get_justification() == "Works perfectly"
 
-def test_funcionalidad_registra_estado_rechazada_correctamente():
-    funcionalidad = Funcionalidad("Modulo de pagos")
-    funcionalidad.set_estado("rechazada", "No cumple los requisitos")
-    assert funcionalidad.get_estado() == "rechazada"    
+def test_functionality_stores_rejected_status_correctly():
+    functionality = Funcionalidad("Payment module")
+    functionality.set_status("rejected", "Does not meet requirements")
+    assert functionality.get_status() == "rejected"   
