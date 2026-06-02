@@ -1,5 +1,5 @@
 import pytest
-from app.seccion_comentarios import SeccionComentarios
+from app.models.seccion_comentarios import SeccionComentarios
 
 def test_comments_section_cannot_receive_comments_if_not_active():
     section = SeccionComentarios()

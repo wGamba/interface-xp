@@ -1,7 +1,7 @@
 import pytest
-from app.programador import Programador
-from app.seccion_comentarios import SeccionComentarios
-from app.cambio_sugerido import CambioSugerido
+from app.models.programador import Programador
+from app.models.seccion_comentarios import SeccionComentarios
+from app.models.cambio_sugerido import CambioSugerido
 
 def test_developer_cannot_get_feedback_if_section_not_active():
     developer = Programador()

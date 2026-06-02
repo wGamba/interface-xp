@@ -1,5 +1,5 @@
 import pytest
-from app.cambio_sugerido import CambioSugerido
+from app.models.cambio_sugerido import CambioSugerido
 
 def test_suggested_change_rejects_invalid_priority():
     with pytest.raises(ValueError):

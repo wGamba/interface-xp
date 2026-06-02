@@ -1,5 +1,5 @@
 import pytest
-from app.funcionalidad import Funcionalidad
+from app.models.funcionalidad import Funcionalidad
 
 def test_functionality_cannot_be_created_without_description():
     with pytest.raises(ValueError):

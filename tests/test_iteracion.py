@@ -1,7 +1,7 @@
 import pytest
-from app.iteracion import Iteracion
-from app.funcionalidad import Funcionalidad
-from app.seccion_comentarios import SeccionComentarios
+from app.models.iteracion import Iteracion
+from app.models.funcionalidad import Funcionalidad
+from app.models.seccion_comentarios import SeccionComentarios
 
 def test_finished_iteration_cannot_receive_more_functionalities():
     iteration = Iteracion()
