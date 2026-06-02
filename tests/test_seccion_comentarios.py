@@ -2,39 +2,39 @@ import pytest
 from app.seccion_comentarios import SeccionComentarios
 from app.programador import Programador
 
-def test_seccion_no_puede_recibir_comentarios_si_no_esta_activa():
-    seccion = SeccionComentarios()
+def test_comments_section_cannot_receive_comments_if_not_active():
+    section = SeccionComentarios()
     with pytest.raises(Exception):
-        seccion.agregar_comentario("Buen incremento")
+        section.add_comment("Great increment")
 
-def test_seccion_no_puede_activarse_dos_veces():
-    seccion = SeccionComentarios()
-    seccion.activar()
+def test_comments_section_cannot_be_activated_twice():
+    section = SeccionComentarios()
+    section.activate()
     with pytest.raises(Exception):
-        seccion.activar()
+        section.activate()
 
-def test_seccion_retorna_lista_vacia_si_no_hay_comentarios():
-    seccion = SeccionComentarios()
-    seccion.activar()
-    assert seccion.get_comentarios() == []
+def test_comments_section_returns_empty_list_if_no_comments():
+    section = SeccionComentarios()
+    section.activate()
+    assert section.get_comments() == []
 
-def test_seccion_no_acepta_comentario_vacio():
-    seccion = SeccionComentarios()
-    seccion.activar()
+def test_comments_section_does_not_accept_empty_comment():
+    section = SeccionComentarios()
+    section.activate()
     with pytest.raises(ValueError):
-        seccion.agregar_comentario("")
+        section.add_comment("")
 
-def test_seccion_agrega_comentario_correctamente():
-    seccion = SeccionComentarios()
-    seccion.activar()
-    seccion.agregar_comentario("Falta validacion de campos")
-    assert seccion.get_comentarios()[0] == "Falta validacion de campos"
+def test_comments_section_adds_comment_correctly():
+    section = SeccionComentarios()
+    section.activate()
+    section.add_comment("Missing field validation")
+    assert section.get_comments()[0] == "Missing field validation"
 
-def test_seccion_no_esta_activa_por_defecto():
-    seccion = SeccionComentarios()
-    assert seccion.is_activa() == False
+def test_comments_section_is_not_active_by_default():
+    section = SeccionComentarios()
+    assert section.is_active() == False
 
-def test_seccion_esta_activa_despues_de_activar():
-    seccion = SeccionComentarios()
-    seccion.activar()
-    assert seccion.is_activa() == True
+def test_comments_section_is_active_after_activation():
+    section = SeccionComentarios()
+    section.activate()
+    assert section.is_active() == True
