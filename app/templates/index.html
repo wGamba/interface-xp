@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}XP Interface — Home{% endblock %}
+{% block content %}
+<h1>Extreme Programming — User Stories</h1>
+<div class="cards">
+    <a class="card" href="{{ url_for('main.pair') }}">
+        <h2>US-01 · Pair Programming</h2>
+        <p>Two developers share a session in real time. The Driver edits a shared
+        file; the Navigator follows live. Roles can be swapped.</p>
+        <span class="go">Open &rarr;</span>
+    </a>
+    <a class="card" href="{{ url_for('main.feedback') }}">
+        <h2>US-02 · Client Feedback</h2>
+        <p>The client reviews the iteration's functionalities, approves or rejects
+        them, proposes changes, and leaves comments the team prioritizes.</p>
+        <span class="go">Open &rarr;</span>
+    </a>
+</div>
+{% endblock %}

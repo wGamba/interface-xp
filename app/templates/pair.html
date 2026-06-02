@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Pair Programming{% endblock %}
+{% block content %}
+<h1>US-01 · Pair Programming</h1>
+<div class="cards">
+    <form class="card" method="post" action="{{ url_for('main.pair') }}">
+        <h2>Create a session</h2>
+        <p>You start as <strong>Driver</strong>.</p>
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="hidden" name="action" value="create">
+        <button type="submit">Create</button>
+    </form>
+    <form class="card" method="post" action="{{ url_for('main.pair') }}">
+        <h2>Join a session</h2>
+        <p>You join as <strong>Navigator</strong>.</p>
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="text" name="code" placeholder="Session code" required>
+        <input type="hidden" name="action" value="join">
+        <button type="submit">Join</button>
+    </form>
+</div>
+{% endblock %}
