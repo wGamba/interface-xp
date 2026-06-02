@@ -1,6 +1,6 @@
 class CambioSugerido:
 
-    priorityValues = ["high", "medium", "low"]
+    validPriorities = ["high", "medium", "low"]
 
     def __init__(self, descripcion, prioridad):
         if not descripcion or descripcion.strip() == "":
