@@ -1,28 +1,28 @@
 import pytest
 from app.cambio_sugerido import CambioSugerido
 
-def test_cambio_sugerido_rechaza_prioridad_invalida():
+def test_suggested_change_rejects_invalid_priority():
     with pytest.raises(ValueError):
-        CambioSugerido("Mejorar interfaz", "urgente")
+        CambioSugerido("Improve interface", "urgent")
 
-def test_cambio_sugerido_no_puede_crearse_sin_descripcion():
+def test_suggested_change_cannot_be_created_without_description():
     with pytest.raises(ValueError):
-        CambioSugerido("", "alta")
+        CambioSugerido("", "high")
 
-def test_cambio_sugerido_actualiza_su_prioridad():
-    cambio = CambioSugerido("Mejorar interfaz", "baja")
-    cambio.set_prioridad("alta")
-    assert cambio.get_prioridad() == "alta"
+def test_suggested_change_updates_its_priority():
+    change = CambioSugerido("Improve interface", "low")
+    change.set_priority("high")
+    assert change.get_priority() == "high"
 
-def test_cambio_sugerido_almacena_descripcion_correctamente():
-    cambio = CambioSugerido("Agregar modo oscuro", "media")
-    assert cambio.get_descripcion() == "Agregar modo oscuro"
+def test_suggested_change_stores_description_correctly():
+    change = CambioSugerido("Add dark mode", "medium")
+    assert change.get_description() == "Add dark mode"
 
-def test_cambio_sugerido_conoce_su_prioridad():
-    cambio = CambioSugerido("Agregar modo oscuro", "alta")
-    assert cambio.get_prioridad() == "alta"
+def test_suggested_change_knows_its_priority():
+    change = CambioSugerido("Add dark mode", "high")
+    assert change.get_priority() == "high"
 
-def test_cambio_sugerido_no_acepta_actualizacion_con_prioridad_invalida():
-    cambio = CambioSugerido("Mejorar interfaz", "media")
+def test_suggested_change_rejects_invalid_priority_on_update():
+    change = CambioSugerido("Improve interface", "medium")
     with pytest.raises(ValueError):
-        cambio.set_prioridad("urgentisimo")
+        change.set_priority("super urgent")
